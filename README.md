@@ -10,7 +10,7 @@ Rossler attractor using particles <br/>
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/RosslerGif.gif) <br/>
 
 Sprot B attractor using particles <br/> 
-![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/SprotBGif.gif) <br/>
+![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/SprottBGif.gif) <br/>
 
 Chen Lee attractor using particles <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/ChenLeeGif.gif) <br/>
