@@ -9,8 +9,11 @@ Lorenz attractor <br/>
 Aizawa attractor <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/Aizawa.gif) <br/>
 
-ChenLee attractor <br/> 
+Chen-Lee attractor <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/ChenLee.gif) <br/>
 
-SprottB attractor <br/> 
+Sprott B attractor <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/SprottB.gif) <br/>
+
+Thomas attractor <br/> 
+![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/Thomas.gif) <br/>
