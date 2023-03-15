@@ -105,7 +105,7 @@ function SprottBAttractor() {
 function draw() {
   frameRate(100);
 
-  SprottBAttractor();
+  ThomasAttractor();
 
   background(0);
   translate(0, 0, -80);
