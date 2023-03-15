@@ -2,11 +2,20 @@ let points = [];
 let x = 0.1;
 let y = 0;
 let z = 0;
-let dt = 0.05;
+let dt = 0.02;
+
+const scl = 50;
+
+let particles = [];
 
 function setup() {
-  createCanvas(1519, 864, WEBGL);
-  stroke(random(255), random(255), random(255));
+  createCanvas(windowWidth, windowHeight);
+
+  for (let i = 0; i < 200; i++) {
+    particles.push(
+      new Particle(random(-10, 10), random(-10, 10), random(-10, 10))
+    );
+  }
 }
 
 function LorenzAttractor() {
@@ -103,28 +112,37 @@ function SprottBAttractor() {
 }
 
 function draw() {
+  background(0, 20);
+  translate(width / 2, height / 2);
   frameRate(100);
+  scale(scl);
 
-  ThomasAttractor();
+  for (let p of particles) {
+    p.update();
+    p.show();
+  }
 
-  background(0);
-  translate(0, 0, -80);
-  let camX = map(mouseX, 0, width, -2000, 2000);
-  let camY = map(mouseY, 0, height, -2000, 2000);
-  camera(
-    camX,
-    camY,
-    height / (4.0 * tan((PI * 30.0) / 180.0)),
-    0,
-    0,
-    0,
-    0,
-    1,
-    0
-  );
-  scale(20);
+  // background(0);
+  // stroke(255);
+  // RosslerAttractor();
 
-  drawAttractor();
+  // translate(0, 0, -80);
+  // let camX = map(mouseX, 0, width, -2000, 2000);
+  // let camY = map(mouseY, 0, height, -2000, 2000);
+  // camera(
+  //   camX,
+  //   camY,
+  //   height / (4.0 * tan((PI * 30.0) / 180.0)),
+  //   0,
+  //   0,
+  //   0,
+  //   0,
+  //   1,
+  //   0
+  // );
+  // scale(20);
+
+  // drawAttractor();
 }
 
 function drawAttractor() {
@@ -136,4 +154,12 @@ function drawAttractor() {
     vertex(p.x, p.y, p.z);
   }
   endShape();
+
+  if (points.length > 1000) {
+    points.shift();
+  }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }

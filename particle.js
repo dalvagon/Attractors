@@ -1,42 +1,79 @@
-const SIGMA = 10;
-const RHO = 28;
-const BETA = 8 / 3;
-const DT = 0.1;
-
 class Particle {
   constructor(x, y, z) {
     this.position = createVector(x, y, z);
-    this.velocity = createVector(0, 0, 0);
     this.previous = this.position.copy();
-    this.hue = random(255);
+    this.dt = 0.2;
   }
 
+  // Aizawa
+  // update() {
+  //   const a = 0.95;
+  //   const b = 0.7;
+  //   const c = 0.65;
+  //   const d = 3.5;
+  //   const e = 0.25;
+  //   const f = 0.1;
+
+  //   this.previous = this.position.copy();
+
+  //   let dx =
+  //     ((this.position.z - b) * this.position.x - d * this.position.y) * this.dt;
+  //   let dy =
+  //     (d * this.position.x + (this.position.z - b) * this.position.y) * this.dt;
+  //   let dz =
+  //     (c +
+  //       a * this.position.z -
+  //       this.position.z ** 3 / 3 -
+  //       (this.position.x ** 2 + this.position.y ** 2) *
+  //         (1 + e * this.position.z)) *
+  //     this.dt;
+
+  //   this.position.x += dx;
+  //   this.position.y += dy;
+  //   this.position.z += dz;
+  // }
+
+  // Lorenz
+  // update() {
+  //   const sigma = 10;
+  //   const rho = 28;
+  //   const beta = 8 / 3;
+
+  //   this.previous = this.position.copy();
+
+  //   let dx = sigma * (this.position.y - this.position.x) * this.dt;
+  //   let dy =
+  //     (this.position.x * (rho - this.position.z) - this.position.y) * this.dt;
+  //   let dz =
+  //     (this.position.x * this.position.y - beta * this.position.z) * this.dt;
+  //   this.position.x += dx;
+  //   this.position.y += dy;
+  //   this.position.z += dz;
+  // }
+
+  // Thomas
   update() {
-    let x = this.position.x;
-    let y = this.position.y;
-    let z = this.position.z;
-    let DT = 0.01;
-    let dx = SIGMA * (y - x) * DT;
-    let dy = (x * (RHO - z) - y) * DT;
-    let dz = (x * y - BETA * z) * DT;
+    let b = 0.208186;
 
     this.previous = this.position.copy();
-    this.velocity = createVector(dx, dy, dz);
-    this.velocity.setMag(random(1, 5));
-    this.position.add(this.velocity);
+
+    let dx = (sin(this.position.y) - b * this.position.x) * this.dt;
+    let dy = (sin(this.position.z) - b * this.position.y) * this.dt;
+    let dz = (sin(this.position.x) - b * this.position.z) * this.dt;
+
+    this.position.x += dx;
+    this.position.y += dy;
+    this.position.z += dz;
   }
 
   show() {
-    stroke(this.hue, 255, 255);
-    this.hue = (this.hue + 1) % 255;
-    strokeWeight(1);
-    line(
-      this.position.x,
-      this.position.y,
-      this.position.z,
-      this.previous.x,
-      this.previous.y,
-      this.previous.z
+    stroke(
+      map(abs(this.position.z), 0, width / scl, 100, 255),
+      map(abs(this.position.y), 0, height / scl, 100, 155),
+      map(abs(this.position.x), 0, width / scl, 255, 40)
     );
+    strokeWeight(0.03);
+
+    line(this.position.x, this.position.y, this.previous.x, this.previous.y);
   }
 }
