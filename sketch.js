@@ -4,7 +4,7 @@ let y = 0;
 let z = 0;
 let dt = 0.02;
 
-const scl = 50;
+const scl = 40;
 
 let particles = [];
 
@@ -114,7 +114,7 @@ function SprottBAttractor() {
 function draw() {
   background(0, 20);
   translate(width / 2, height / 2);
-  frameRate(100);
+  frameRate(200);
   scale(scl);
 
   for (let p of particles) {

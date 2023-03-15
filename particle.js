@@ -2,7 +2,7 @@ class Particle {
   constructor(x, y, z) {
     this.position = createVector(x, y, z);
     this.previous = this.position.copy();
-    this.dt = 0.2;
+    this.dt = 0.05;
   }
 
   // Aizawa
@@ -52,14 +52,68 @@ class Particle {
   // }
 
   // Thomas
+  // update() {
+  //   let b = 0.208186;
+
+  //   this.previous = this.position.copy();
+
+  //   let dx = (sin(this.position.y) - b * this.position.x) * this.dt;
+  //   let dy = (sin(this.position.z) - b * this.position.y) * this.dt;
+  //   let dz = (sin(this.position.x) - b * this.position.z) * this.dt;
+
+  //   this.position.x += dx;
+  //   this.position.y += dy;
+  //   this.position.z += dz;
+  // }
+
+  // Rossler
+  // update() {
+  //   const a = 0.2;
+  //   const b = 0.2;
+  //   const c = 5.7;
+
+  //   this.previous = this.position.copy();
+
+  //   let dx = (-this.position.y - this.position.z) * this.dt;
+  //   let dy = (this.position.x + a * this.position.y) * this.dt;
+  //   let dz = (b + this.position.z * (this.position.x - c)) * this.dt;
+
+  //   this.position.x += dx;
+  //   this.position.y += dy;
+  //   this.position.z += dz;
+  // }
+
+  // Chen Lee
+  // update() {
+  //   const a = 5;
+  //   const b = -10;
+  //   const d = -0.38;
+
+  //   this.previous = this.position.copy();
+
+  //   let dx =
+  //     (a * this.position.x - this.position.y * this.position.z) * this.dt;
+  //   let dy =
+  //     (b * this.position.y + this.position.x * this.position.z) * this.dt;
+  //   let dz =
+  //     (d * this.position.z + (this.position.x * this.position.y) / 3) * this.dt;
+
+  //   this.position.x += dx;
+  //   this.position.y += dy;
+  //   this.position.z += dz;
+  // }
+
+  // Sprott B
   update() {
-    let b = 0.208186;
+    const a = 0.4;
+    const b = 1.2;
+    const c = 1;
 
     this.previous = this.position.copy();
 
-    let dx = (sin(this.position.y) - b * this.position.x) * this.dt;
-    let dy = (sin(this.position.z) - b * this.position.y) * this.dt;
-    let dz = (sin(this.position.x) - b * this.position.z) * this.dt;
+    let dx = a * this.position.y * this.position.z * this.dt;
+    let dy = (this.position.x - b * this.position.y) * this.dt;
+    let dz = (c - this.position.x * this.position.y) * dt;
 
     this.position.x += dx;
     this.position.y += dy;
@@ -68,11 +122,11 @@ class Particle {
 
   show() {
     stroke(
-      map(abs(this.position.z), 0, width / scl, 100, 255),
-      map(abs(this.position.y), 0, height / scl, 100, 155),
-      map(abs(this.position.x), 0, width / scl, 255, 40)
+      map(abs(this.position.z), 0, width / scl, 100, 150),
+      map(abs(this.position.y), 0, height / scl, 150, 0),
+      map(abs(this.position.x), 0, width / scl, 200, 100)
     );
-    strokeWeight(0.03);
+    strokeWeight(0.1);
 
     line(this.position.x, this.position.y, this.previous.x, this.previous.y);
   }
