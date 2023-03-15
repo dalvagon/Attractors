@@ -6,6 +6,15 @@ Lorenz attractor using particles <br/>
 Thomas attractor using particles <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/ThomasGif.gif) <br/>
 
+Rossler attractor using particles <br/> 
+![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/RosslerGif.gif) <br/>
+
+Sprot B attractor using particles <br/> 
+![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/SprotBGif.gif) <br/>
+
+Chen Lee attractor using particles <br/> 
+![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/ChenLeeGif.gif) <br/>
+
 Rossler attractor <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/Rossler.gif) <br/>
 
