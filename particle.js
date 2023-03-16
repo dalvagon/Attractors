@@ -2,7 +2,7 @@ class Particle {
   constructor(x, y, z) {
     this.position = createVector(x, y, z);
     this.previous = this.position.copy();
-    this.dt = 0.05;
+    this.dt = random(0.0001, 0.0002);
   }
 
   // Aizawa
@@ -46,6 +46,7 @@ class Particle {
   //     (this.position.x * (rho - this.position.z) - this.position.y) * this.dt;
   //   let dz =
   //     (this.position.x * this.position.y - beta * this.position.z) * this.dt;
+
   //   this.position.x += dx;
   //   this.position.y += dy;
   //   this.position.z += dz;
@@ -104,30 +105,86 @@ class Particle {
   // }
 
   // Sprott B
-  update() {
-    const a = 0.4;
-    const b = 1.2;
-    const c = 1;
+  // update() {
+  //   const a = 0.4;
+  //   const b = 1.2;
+  //   const c = 1;
 
+  //   this.previous = this.position.copy();
+
+  //   let dx = a * this.position.y * this.position.z * this.dt;
+  //   let dy = (this.position.x - b * this.position.y) * this.dt;
+  //   let dz = (c - this.position.x * this.position.y) * this.dt;
+
+  //   this.position.x += dx;
+  //   this.position.y += dy;
+  //   this.position.z += dz;
+  // }
+
+  // random
+  update() {
     this.previous = this.position.copy();
 
-    let dx = a * this.position.y * this.position.z * this.dt;
-    let dy = (this.position.x - b * this.position.y) * this.dt;
-    let dz = (c - this.position.x * this.position.y) * dt;
+    const a = 0.5;
+    const b = 1.5;
+    const c = 1.4;
+
+    let dx = (a * this.position.x - this.position.y * this.position.z) * this.dt;
+    let dy = (b * this.position.y + this.position.x * this.position.z) * this.dt;
+    let dz = (c + this.position.x * this.position.y - this.position.z ** 2) * this.dt;
 
     this.position.x += dx;
     this.position.y += dy;
     this.position.z += dz;
+
+    // if (!this.isOnScreen()) {
+    //   this.position = createVector(
+    //     random(-100, 100),
+    //     random(-100, 100),
+    //     random(-100, 100)
+    //   );
+    //   this.previous = this.position.copy();
+    // }
+
+    if (!this.isOnScreen()) {
+      this.position = createVector(
+        random(-width / 4, width / 4),
+        random(-height / 4, height / 4),
+        random(-width / 4, width / 4)
+      );
+
+      this.previous = this.position.copy();
+    }
   }
 
   show() {
+    let diffx = this.position.x - this.previous.x;
+    let diffy = this.position.y - this.previous.y;
+    let diffz = this.position.z - this.previous.z;
+
+
     stroke(
-      map(abs(this.position.z), 0, width / scl, 100, 150),
-      map(abs(this.position.y), 0, height / scl, 150, 0),
-      map(abs(this.position.x), 0, width / scl, 200, 100)
+      map(abs(diffx), 0, 1, 0, 255),
+      map(abs(diffy), 0, 1, 0, 255),
+      map(abs(diffz), 0, 1, 0, 255)
     );
+
+    // stroke(
+    //   map(abs(this.position.z), 0, width / scl, 100, 250),
+    //   map(abs(this.position.y), 0, height / scl, 150, 0),
+    //   map(abs(this.position.x), 0, width / scl, 255, 150)
+    // );
     strokeWeight(0.1);
 
     line(this.position.x, this.position.y, this.previous.x, this.previous.y);
+  }
+
+  isOnScreen() {
+    return (
+      this.previous.x > -width / 2 &&
+      this.previous.x < width / 2 &&
+      this.previous.y > -height / 2 &&
+      this.previous.y < height / 2
+    );
   }
 }

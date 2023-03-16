@@ -1,8 +1,10 @@
+let as, bs, cs;
+
 let points = [];
 let x = 0.1;
 let y = 0;
 let z = 0;
-let dt = 0.02;
+let dt = 0.0002;
 
 const scl = 40;
 
@@ -11,11 +13,19 @@ let particles = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 500; i++) {
     particles.push(
       new Particle(random(-10, 10), random(-10, 10), random(-10, 10))
     );
   }
+
+  // as = createSlider(-100, 100, 10, 0.1);
+  // bs = createSlider(-100, 100, 20, 0.1);
+  // cs = createSlider(-100, 100, 30, 0.1);
+
+  // as.position(10, 10);
+  // bs.position(10, 40);
+  // cs.position(10, 70);
 }
 
 function LorenzAttractor() {
@@ -111,6 +121,22 @@ function SprottBAttractor() {
   points.push(createVector(x, y, z));
 }
 
+function RandomAttractor() {
+  const a = 99.9;
+  const b = 0.4;
+  const c = 20;
+
+  dx = (a * y + b * y ** 2 - c * z) * dt;
+  dy = (x * a - y ** 2 - x * b) * dt;
+  dz = x * y * x;
+
+  z += dx;
+  y += dy;
+  z += dz;
+
+  points.push(createVector(x, y, z));
+}
+
 function draw() {
   background(0, 20);
   translate(width / 2, height / 2);
@@ -124,7 +150,7 @@ function draw() {
 
   // background(0);
   // stroke(255);
-  // RosslerAttractor();
+  // RandomAttractor();
 
   // translate(0, 0, -80);
   // let camX = map(mouseX, 0, width, -2000, 2000);
