@@ -126,10 +126,10 @@ class Particle {
     this.previous = this.position.copy();
 
     const a = 0.5;
-    const b = 1.5;
+    const b = 0.1;
     const c = 1.4;
 
-    let dx = (a * this.position.x - this.position.y * this.position.z) * this.dt;
+    let dx = (a * this.position.x + this.position.y * this.position.z) * this.dt;
     let dy = (b * this.position.y + this.position.x * this.position.z) * this.dt;
     let dz = (c + this.position.x * this.position.y - this.position.z ** 2) * this.dt;
 
@@ -137,24 +137,24 @@ class Particle {
     this.position.y += dy;
     this.position.z += dz;
 
-    // if (!this.isOnScreen()) {
-    //   this.position = createVector(
-    //     random(-100, 100),
-    //     random(-100, 100),
-    //     random(-100, 100)
-    //   );
-    //   this.previous = this.position.copy();
-    // }
-
     if (!this.isOnScreen()) {
       this.position = createVector(
-        random(-width / 4, width / 4),
-        random(-height / 4, height / 4),
-        random(-width / 4, width / 4)
+        random(-100, 100),
+        random(-100, 100),
+        random(-100, 100)
       );
-
       this.previous = this.position.copy();
     }
+
+    // if (!this.isOnScreen()) {
+    //   this.position = createVector(
+    //     random(-width / 4, width / 4),
+    //     random(-height / 4, height / 4),
+    //     random(-width / 4, width / 4)
+    //   );
+
+    //   this.previous = this.position.copy();
+    // }
   }
 
   show() {
@@ -164,9 +164,9 @@ class Particle {
 
 
     stroke(
+      map(abs(diffz), 0, 1, 0, 255),
       map(abs(diffx), 0, 1, 0, 255),
       map(abs(diffy), 0, 1, 0, 255),
-      map(abs(diffz), 0, 1, 0, 255)
     );
 
     // stroke(
@@ -174,7 +174,7 @@ class Particle {
     //   map(abs(this.position.y), 0, height / scl, 150, 0),
     //   map(abs(this.position.x), 0, width / scl, 255, 150)
     // );
-    strokeWeight(0.1);
+    strokeWeight(0.5);
 
     line(this.position.x, this.position.y, this.previous.x, this.previous.y);
   }

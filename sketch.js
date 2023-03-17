@@ -6,7 +6,7 @@ let y = 0;
 let z = 0;
 let dt = 0.0002;
 
-const scl = 40;
+const scl = 1;
 
 let particles = [];
 
@@ -15,7 +15,7 @@ function setup() {
 
   for (let i = 0; i < 500; i++) {
     particles.push(
-      new Particle(random(-10, 10), random(-10, 10), random(-10, 10))
+      new Particle(random(-100, 100), random(-100, 100), random(-100, 100))
     );
   }
 
