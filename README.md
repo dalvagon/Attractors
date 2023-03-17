@@ -18,6 +18,7 @@ Chen Lee attractor using particles <br/>
 Random attractors using particles <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/Random1.gif) <br/>
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/Random2.gif) <br/>
+![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/Random3.gif) <br/>
 
 Rossler attractor <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/Rossler.gif) <br/>
