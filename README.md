@@ -9,7 +9,7 @@ Thomas attractor using particles <br/>
 Rossler attractor using particles <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/RosslerGif.gif) <br/>
 
-Sprot B attractor using particles <br/> 
+Sprott B attractor using particles <br/> 
 ![alt text](https://github.com/dalvagon/Attractors/blob/main/assets/SprottBGif.gif) <br/>
 
 Chen Lee attractor using particles <br/> 
